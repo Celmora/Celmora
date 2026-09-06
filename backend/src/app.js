@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
+const authRoutes = require("./modules/auth/auth.routes");
+
 const app = express();
 
 app.use(helmet());
@@ -14,5 +16,7 @@ app.get("/api/health", (req, res) => {
     message: "Celmora API is running",
   });
 });
+
+app.use("/api/auth", authRoutes);
 
 module.exports = app;
