@@ -1,1 +1,65 @@
 @import "tailwindcss";
+
+@theme {
+  --color-cream: #f2e8da;
+  --color-cocoa: #0e0805;
+  --color-vault: #1f0a11;
+  --color-gold: #c9a24b;
+  --color-gold-bright: #eed7a0;
+  --color-rose: #a72c50;
+  --color-rose-deep: #77193a;
+  --color-blush: #f2d7dc;
+
+  --font-royal: "Playfair Display", serif;
+  --font-court: "Jost", sans-serif;
+}
+
+@property --royal-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes royal-rotate {
+  to { --royal-angle: 360deg; }
+}
+
+/* thin shining royal frame — for buttons AND containers */
+.royal-frame {
+  position: relative;
+  display: inline-block;
+  padding: 1.5px;
+  border-radius: var(--royal-radius, 9999px);
+  background: conic-gradient(
+    from var(--royal-angle),
+    #4a3212,
+    #c9a24b 20%,
+    #f7e6b8 28%,
+    #c9a24b 36%,
+    #4a3212 52%,
+    #c9a24b 72%,
+    #f7e6b8 80%,
+    #c9a24b 88%,
+    #4a3212
+  );
+  animation: royal-rotate 7s linear infinite;
+  box-shadow: 0 0 18px rgba(201, 162, 75, 0.2);
+}
+
+.royal-frame > * {
+  border-radius: calc(var(--royal-radius, 9999px) - 1.5px);
+}
+
+/* slower, calmer orbit for big containers */
+.royal-slow {
+  animation-duration: 12s;
+}
+
+/* hover magic — buttons only */
+.btn-royal {
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.btn-royal:hover {
+  box-shadow: 0 0 34px rgba(238, 215, 160, 0.45);
+  transform: translateY(-1px);
+}
